@@ -8,6 +8,10 @@ require 'pcut/query'
 
 module Pcut
 
+  class Color
+    extend Term::ANSIColor
+  end
+
   class CLI
     include Term::ANSIColor
 
@@ -150,19 +154,19 @@ module Pcut
 
     def index_labeL(index)
       return "" unless @preview
-      (@color ? red : '') + "[" +
-      (@color ? yellow : '' ) + "#{index}" + 
-      (@color ? red : '') + "]" + (@color ? reset : '')
+      (@color ? Color.red : '') + "[" +
+      (@color ? Color.yellow : '' ) + "#{index}" + 
+      (@color ? Color.red : '') + "]" + (@color ? Color.reset : '')
     end
 
     def query_label(index, queries)
       return "" unless @preview
       query_str = queries.each { |q| q.to_s }.join(".")
 
-      (@color ? red : '') + "[" +
-      (@color ? yellow : '' ) + "#{index}" +
-      (@color ? green : '' ) + ".#{query_str}" +
-      (@color ? red : '') + "]" + (@color ? reset : '')
+      (@color ? Color.red : '') + "[" +
+      (@color ? Color.yellow : '' ) + "#{index}" +
+      (@color ? Color.green : '' ) + ".#{query_str}" +
+      (@color ? Color.red : '') + "]" + (@color ? Color.reset : '')
     end
 
   end
